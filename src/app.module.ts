@@ -1,5 +1,4 @@
 import { MiddlewareConsumer, Module, ValidationPipe } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import cookieSession from 'cookie-session';
@@ -12,10 +11,6 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV}`,
-    }),
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database:
