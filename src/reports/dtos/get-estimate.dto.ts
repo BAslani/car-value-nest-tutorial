@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { Transform } from 'class-transformer';
 import {
   IsLatitude,
   IsLongitude,
@@ -14,19 +16,21 @@ export class GetEstimateDTO {
   @IsString()
   model: string;
 
+  @Transform(({ value }) => parseInt(value))
   @IsNumber()
   @Min(1900)
   @Max(2050)
   year: number;
 
-  @IsNumber()
+  @Transform(({ value }) => parseFloat(value))
   @IsLongitude()
   lng: number;
 
-  @IsNumber()
+  @Transform(({ value }) => parseFloat(value))
   @IsLatitude()
   lat: number;
 
+  @Transform(({ value }) => parseInt(value))
   @IsNumber()
   @Min(0)
   @Max(1000000)
