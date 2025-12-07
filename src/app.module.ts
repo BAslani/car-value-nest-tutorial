@@ -13,7 +13,6 @@ import { UsersModule } from './users/users.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      // database: process.env.NODE_ENV === 'development' ? 'db.sqlite' : 'test.sqlite',
       database: 'db.sqlite',
       entities: [User, Report],
       synchronize: true, // use only in development
@@ -32,7 +31,7 @@ export class AppModule {
     consumer
       .apply(
         cookieSession({
-          keys: ['qwerty'],
+          keys: [process.env.COOKIE_SESSION_KEY!],
         }),
       )
       .forRoutes('*');
